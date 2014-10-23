@@ -39,7 +39,7 @@ float MAX6675::read_temp()
     delay(2);
     digitalWrite(_CS_pin,HIGH);
     unsigned long currentMillis = millis();
-    if (currentMillis - previousMllis >220) {
+    if (currentMillis - previousMillis >220) {
       previousMillis = currentMillis;
 
     /* Read the chip and return the raw temperature value */
