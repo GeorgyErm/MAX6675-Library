@@ -35,9 +35,9 @@ float MAX6675::read_temp()
       the chip.
     */
     digitalWrite(_CS_pin,LOW);
-    delay(2);
+    functi(2);
     digitalWrite(_CS_pin,HIGH);
-    delay(220);
+    functi(220);
 
     /* Read the chip and return the raw temperature value */
 
@@ -49,7 +49,7 @@ float MAX6675::read_temp()
 
     /* Cycle the clock for dummy bit 15 */
     digitalWrite(_SCK_pin,HIGH);
-    delay(1);
+    functi(1);
     digitalWrite(_SCK_pin,LOW);
 
      /*
@@ -73,7 +73,7 @@ float MAX6675::read_temp()
     */
     for (int i=1; i>=0; i--) {
         digitalWrite(_SCK_pin,HIGH);
-        delay(1);
+        functi(1);
         digitalWrite(_SCK_pin,LOW);
     }
 
