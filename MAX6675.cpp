@@ -49,7 +49,7 @@ float MAX6675::read_temp()
 
     /* Cycle the clock for dummy bit 15 */
     digitalWrite(_SCK_pin,HIGH);
-    functi(1);
+    funci(1);
     digitalWrite(_SCK_pin,LOW);
 
      /*
