@@ -26,6 +26,7 @@ float MAX6675::read_temp()
     uint16_t value = 0;
     uint8_t error_tc = 0;
     float temp = 0.0;
+    long previousMillis = 0;
 
     /*
       Initiate a temperature conversion. According to MAX's tech notes FAQ's
@@ -37,7 +38,9 @@ float MAX6675::read_temp()
     digitalWrite(_CS_pin,LOW);
     delay(2);
     digitalWrite(_CS_pin,HIGH);
-    delay(220);
+    unsigned long currentMillis = millis();
+    if (currentMillis - previousMllis >220) {
+      previousMillis = currentMillis;
 
     /* Read the chip and return the raw temperature value */
 
@@ -105,5 +108,6 @@ float MAX6675::read_temp()
         return -_CS_pin;
     } else {
         return temp;
+    }
     }
 }
