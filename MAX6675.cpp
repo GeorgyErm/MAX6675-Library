@@ -26,8 +26,8 @@ float MAX6675::read_temp()
     uint16_t value = 0;
     uint8_t error_tc = 0;
     float temp = 0.0;
-    unsigned long currM = millis;
-    unsigned long prevV=0;
+    unsigned long currM = millis();
+    unsigned long prevM = 0;
     
     /*
       Initiate a temperature conversion. According to MAX's tech notes FAQ's
@@ -39,7 +39,7 @@ float MAX6675::read_temp()
     digitalWrite(_CS_pin,LOW);
     delay(2);
     digitalWrite(_CS_pin,HIGH);
-    currM=millis;
+    currM=millis();
    if (currM-prevM>220){
      prevM=currM;
 
@@ -53,7 +53,7 @@ float MAX6675::read_temp()
 
     /* Cycle the clock for dummy bit 15 */
     digitalWrite(;
-    funci(1);
+    delay(1);
     digitalWrite(_SCK_pin,LOW);
 
      /*
@@ -77,7 +77,7 @@ float MAX6675::read_temp()
     */
     for (int i=1; i>=0; i--) {
         digitalWrite(_SCK_pin,HIGH);
-        functi(1);
+        delay(1);
         digitalWrite(_SCK_pin,LOW);
     }
 
