@@ -4,7 +4,6 @@
   This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
   http://creativecommons.org/licenses/by-sa/3.0/
 */
-
 #include <MAX6675.h>
 
 MAX6675::MAX6675(uint8_t CS_pin, uint8_t SO_pin, uint8_t SCK_pin, uint8_t units)
@@ -26,9 +25,9 @@ float MAX6675::read_temp()
     uint16_t value = 0;
     uint8_t error_tc = 0;
     float temp = 0.0;
-    unsigned long currM = millis();
+    unsigned long currM = 0;
     unsigned long prevM = 0;
-    
+
     /*
       Initiate a temperature conversion. According to MAX's tech notes FAQ's
       for the chip, Line going high initiates a conversion, which means, we
@@ -39,9 +38,9 @@ float MAX6675::read_temp()
     digitalWrite(_CS_pin,LOW);
     delay(2);
     digitalWrite(_CS_pin,HIGH);
-    currM=millis();
-   if (currM-prevM>220){
-     prevM=currM;
+    currM = millis();
+    if (currM - prevM > 220){
+      prevM = currM;
 
     /* Read the chip and return the raw temperature value */
 
@@ -52,7 +51,7 @@ float MAX6675::read_temp()
     digitalWrite(_CS_pin,LOW);
 
     /* Cycle the clock for dummy bit 15 */
-    digitalWrite(;
+    digitalWrite(_SCK_pin,HIGH);
     delay(1);
     digitalWrite(_SCK_pin,LOW);
 
@@ -110,5 +109,5 @@ float MAX6675::read_temp()
     } else {
         return temp;
     }
-   }
+}
 }
